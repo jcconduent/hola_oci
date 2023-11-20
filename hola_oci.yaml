@@ -24,7 +24,7 @@ spec:
 apiVersion: v1
 kind: Service
 metadata:
-  name: hola_oci-service-jco
+  name: hola-oci-service-jco
   namespace: ns-jco
   annotations:
     oci.oraclecloud.com/load-balancer-type: "lb"
