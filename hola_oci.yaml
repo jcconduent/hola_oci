@@ -6,15 +6,15 @@ metadata:
 spec:
   selector:
     matchLabels:
-      app: hola_oci
+      app: hola-oci
   replicas: 1
   template:
     metadata:
       labels:
-        app: hola_oci
+        app: hola-oci
     spec:
       containers:
-      - name: hola_oci
+      - name: hola-oci
         image: iad.ocir.io/ocuocictrng30/hola_oci:latest
         ports:
         - containerPort: 80
@@ -38,4 +38,4 @@ spec:
     protocol: TCP
     targetPort: 80
   selector:
-    app: hola_oci
+    app: hola-oci
