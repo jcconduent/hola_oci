@@ -1,0 +1,41 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: hola_oci-deployment-jco
+  namespace: ns-jco
+spec:
+  selector:
+    matchLabels:
+      app: hola_oci
+  replicas: 1
+  template:
+    metadata:
+      labels:
+        app: hola_oci
+    spec:
+      containers:
+      - name: hola_oci
+        image: iad.ocir.io/ocuocictrng30/hola_oci:latest
+        ports:
+        - containerPort: 80
+      imagePullSecrets:
+      - name: ocir-secret-jco
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: hola_oci-service-jco
+  namespace: ns-jco
+  annotations:
+    oci.oraclecloud.com/load-balancer-type: "lb"
+    service.beta.kubernetes.io/oci-load-balancer-shape: "flexible"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-min: "10"
+    service.beta.kubernetes.io/oci-load-balancer-shape-flex-max: "100"
+spec:
+  type: LoadBalancer
+  ports:
+  - port: 80
+    protocol: TCP
+    targetPort: 80
+  selector:
+    app: hola_oci
