@@ -1,7 +1,7 @@
 apiVersion: apps/v1
 kind: Deployment
 metadata:
-  name: hola_oci-deployment-jco
+  name: hola-oci-deployment-jco
   namespace: ns-jco
 spec:
   selector:
